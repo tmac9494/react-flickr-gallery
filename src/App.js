@@ -22,7 +22,10 @@ class App extends Component {
     this.performSearch();
   }
 
-  performSearch = (query = 'cats') => {
+  performSearch = (query = 'sky') => {
+    this.setState({
+      loading:true
+    });
     axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=16&format=json&nojsoncallback=1`)
     .then(response => {
       this.setState({
@@ -41,8 +44,12 @@ class App extends Component {
       <BrowserRouter>
       <div className="container">
         <SearchForm onSearch={this.performSearch}/>
-        <Navigation />
-        <PhotoContainer data={this.state.pics} />
+        <Navigation showCategory={this.performSearch}/>
+        {
+          (this.state.loading)
+          ? <p>Loading...</p>
+          : <PhotoContainer data={this.state.pics} />
+        } 
       </div>
       </BrowserRouter>
     );
