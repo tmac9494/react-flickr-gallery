@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 import './App.css';
 import SearchForm from './SearchForm';
 import Navigation from './Navigation';
+import NotFound from './NotFound';
 import PhotoContainer from './PhotoContainer';
-import {Router,BrowserRouter} from 'react-router-dom';
+import {Router,BrowserRouter,Route,Switch} from 'react-router-dom';
 import apiKey from './config.js';
 import axios from 'axios';
 
@@ -45,11 +46,14 @@ class App extends Component {
       <div className="container">
         <SearchForm onSearch={this.performSearch}/>
         <Navigation showCategory={this.performSearch}/>
+        <Switch>
         {
           (this.state.loading)
           ? <p>Loading...</p>
-          : <PhotoContainer data={this.state.pics} />
-        } 
+          : <Route exact path="/" render={ () => <PhotoContainer data={this.state.pics} />} />
+        }
+        <Route component={NotFound} /> 
+        </Switch>
       </div>
       </BrowserRouter>
     );
