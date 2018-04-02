@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import {Link,NavLink} from 'react-router-dom';
 
 
 const Navigation = (props) => {
@@ -10,9 +10,10 @@ const Navigation = (props) => {
 	return (
 		<nav className="main-nav">
 	    <ul>
-	      <li><Link to="/" onClick={() => {showImages('cats');}}>Cats</Link></li>
-	      <li><Link to="/" onClick={() => {showImages('dogs');}}>Dogs</Link></li>
-	      <li><Link to="/" onClick={() => {showImages('computers');}}>Computers</Link></li>
+	      <li><NavLink to="/cats" onClick={() => {showImages('cats');}}>Cats</NavLink></li>
+	      <li><NavLink to="/dogs" onClick={() => {showImages('dogs');}}>Dogs</NavLink></li>
+	      <li><NavLink to="/computers" onClick={() => {showImages('computers');}}>Computers</NavLink></li>
+	      <li><NavLink to="/search" onClick={() => {}}>Search</NavLink></li>
 	    </ul>
 	  </nav>
 	);

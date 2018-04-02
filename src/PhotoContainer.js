@@ -1,5 +1,5 @@
 import React from 'react';
-
+import Photo from './Photo';
 
 const PhotoContainer = (props) => {
 	return (
@@ -11,9 +11,7 @@ const PhotoContainer = (props) => {
 	    		:
 	    		props.data.map(pic => {
 	    			return (
-		    			<li key={pic.id}>
-			        		<img src={`https://farm${pic.farm}.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}.jpg`} alt="" />
-		    			</li>
+		    			<Photo data={pic} />
 	    			);
 	    		})
 	    	}

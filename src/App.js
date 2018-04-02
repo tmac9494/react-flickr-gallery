@@ -15,7 +15,8 @@ class App extends Component {
     super();
     this.state= {
       pics: [],
-      loading: true
+      loading: true,
+      path: '',
     };
   }
 
@@ -23,9 +24,10 @@ class App extends Component {
     this.performSearch();
   }
 
-  performSearch = (query = 'sky') => {
+  performSearch = (query) => {
     this.setState({
-      loading:true
+      loading:true,
+      path: query
     });
     axios.get(`https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=${apiKey}&tags=${query}&per_page=16&format=json&nojsoncallback=1`)
     .then(response => {
@@ -40,17 +42,17 @@ class App extends Component {
     });
   }
 
-  render() {
+  render(path=this.state.path) {
     return (
       <BrowserRouter>
       <div className="container">
-        <SearchForm onSearch={this.performSearch}/>
+        <Route path="/search" render={() => <SearchForm onSearch={this.performSearch}/>} />
         <Navigation showCategory={this.performSearch}/>
         <Switch>
         {
           (this.state.loading)
           ? <p>Loading...</p>
-          : <Route exact path="/" render={ () => <PhotoContainer data={this.state.pics} />} />
+          : <Route exact path="/:path" render={ () => <PhotoContainer data={this.state.pics} />} />
         }
         <Route component={NotFound} /> 
         </Switch>
