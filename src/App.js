@@ -5,7 +5,7 @@ import SearchForm from './SearchForm';
 import Navigation from './Navigation';
 import NotFound from './NotFound';
 import PhotoContainer from './PhotoContainer';
-import {Router,BrowserRouter,Route,Switch} from 'react-router-dom';
+import {BrowserRouter,Route,Switch} from 'react-router-dom';
 import apiKey from './config.js';
 import axios from 'axios';
 
@@ -17,7 +17,6 @@ class App extends Component {
     this.state= {
       pics: [],
       loading: true,
-      path: '',
     };
   }
 
