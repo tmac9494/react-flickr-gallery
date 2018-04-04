@@ -3,14 +3,17 @@ import React, {Component} from 'react';
 
 
 export default class SearchForm extends Component {
+	//state holding the search text that will be typed in the search bar
 	state = {
 		searchText: ''
 	}
 
+	//func to update state when the user is typing a query into the search form
 	onSearchChange = e => {
     	this.setState({ searchText: e.target.value });
 	}
 
+	//func to handle the onSubmit event
 	handleSubmit = e => {
 	    e.preventDefault();
 	    this.props.onSearch(this.state.searchText);
@@ -19,6 +22,8 @@ export default class SearchForm extends Component {
 
 	render() {
 		return (
+			//form onSubmite trigger handleSubmit func which uses the performSearch func from app.js and uses the searchText state as the search query parameter
+			//add onChange to input that will update searchText state to the text inside the input
 			<form className="search-form" onSubmit={this.handleSubmit}>
 	        <input type="search" onChange={this.onSearchChange} name="search" placeholder="Search" required="" />
 	        <button type="submit" className="search-button">

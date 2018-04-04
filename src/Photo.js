@@ -3,10 +3,15 @@ import React from 'react';
 
 const Photo = (props) => {
 	return (
-		<li key={props.data.id}>
-    		<img src={`https://farm${props.data.farm}.staticflickr.com/${props.data.server}/${props.data.id}_${props.data.secret}.jpg`} alt="" />
-		</li>    
-	);
+		//loop through props.pics(flickr api picture object) and return a list item containing an img with the src info from the api data
+		props.pics.map(pic => {
+			return (
+				<li key={pic.id}>
+		    		<img src={`https://farm${pic.farm}.staticflickr.com/${pic.server}/${pic.id}_${pic.secret}.jpg`} alt="" />
+				</li>
+			)
+		})
+	)
 }
 
 
